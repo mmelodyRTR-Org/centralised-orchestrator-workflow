@@ -1,0 +1,30 @@
+name: Orchestrator (central order + attestations)
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+      attestations: write
+    steps:
+      # ✅ Checks out the CALLER repo so local composite actions exist in workspace
+      - uses: actions/checkout@v4
+
+      - name: Build plugin (local composite action)
+        id: build
+        uses: ./.github/actions/build
+
+      - name: test plugin (local composite action)
+        id: test
+        uses: ./.github/actions/test
+
+
