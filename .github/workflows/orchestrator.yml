@@ -10,11 +10,6 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-      id-token: write
-      attestations: write
     steps:
       # ✅ Checks out the CALLER repo so local composite actions exist in workspace
       - uses: actions/checkout@v4
